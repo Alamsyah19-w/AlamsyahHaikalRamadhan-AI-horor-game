@@ -11,6 +11,23 @@ public class MovementPlayer : MonoBehaviour
         Movement();
         
     }
+    private void CalculateVelocity()
+    {
+        Transform cameraTransform = Camera.main.transform;
+        Vector3 xDirection = movementDirection.x * cameraTransform.right;
+        Vector3 zDirection = movementDirection.z * cameraTransform.forward;
+        Vector3 Direction = xDirection + zDirection;
+        Direction.y = 0f;
+        if (movementDirection.magnitude > 0.1f)
+        {
+            velocity= Direction.normalized * speed * Time.deltaTime;
+            
+        }
+        else
+        {
+            velocity = Vector3.zero;
+        }
+    }
 
     public void SetMovementDirection(Vector2 inputDirection)
     {
@@ -18,15 +35,7 @@ public class MovementPlayer : MonoBehaviour
     }
     public void Movement()
     {
-        if (movementDirection.magnitude > 0.1f)
-        {
-            velocity= movementDirection * speed * Time.deltaTime;
-            
-        }
-        else
-        {
-            velocity = Vector3.zero;
-        }
+        CalculateVelocity();
         characterController.Move(velocity);
         
     }
