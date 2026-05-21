@@ -2,15 +2,34 @@ using UnityEngine;
 
 public class MovementPlayer : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Vector3 movementDirection;
+    private float speed = 5f;
+    private Vector3 velocity;
+    [SerializeField] private CharacterController characterController;
+    private void Update()
     {
+        Movement();
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetMovementDirection(Vector2 inputDirection)
     {
+        movementDirection = new Vector3(inputDirection.x, 0, inputDirection.y);
+    }
+    public void Movement()
+    {
+        if (movementDirection.magnitude > 0.1f)
+        {
+            velocity= movementDirection * speed * Time.deltaTime;
+            
+        }
+        else
+        {
+            velocity = Vector3.zero;
+        }
+        characterController.Move(velocity);
         
     }
+
+
 }

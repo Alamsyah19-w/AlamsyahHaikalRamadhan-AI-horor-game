@@ -5,6 +5,7 @@ using static PlayerInputAction;
 public class InputManager : MonoBehaviour,IMovementActions
 {
     private PlayerInputAction inputActions;
+    public UnityEvent<Vector2> OnMoveInputEvent;
   
     private void Awake()
     {
@@ -24,10 +25,8 @@ public class InputManager : MonoBehaviour,IMovementActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
             Debug.Log(context.ReadValue<Vector2>());
-        }
+            OnMoveInputEvent?.Invoke(context.ReadValue<Vector2>());
     }
 }
 
