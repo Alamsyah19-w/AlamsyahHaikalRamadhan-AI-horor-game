@@ -1,0 +1,33 @@
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using static PlayerInputAction; 
+public class InputManager : MonoBehaviour,IMovementActions
+{
+    private PlayerInputAction inputActions;
+  
+    private void Awake()
+    {
+        inputActions = new PlayerInputAction();
+        inputActions.Enable();
+
+        inputActions.Movement.SetCallbacks(this);
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("Interact action performed");
+        }
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log(context.ReadValue<Vector2>());
+        }
+    }
+}
+
