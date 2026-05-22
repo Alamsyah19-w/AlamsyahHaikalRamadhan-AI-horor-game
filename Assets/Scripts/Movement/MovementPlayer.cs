@@ -11,6 +11,8 @@ public class MovementPlayer : MonoBehaviour
     private float sprintSpeed = 8f;
     private Vector3 movementDirection;
     private Vector3 velocity;
+
+    public bool Sprint => sprint;
     
     private void Update()
     {
