@@ -2,5 +2,6 @@ using UnityEngine;
 
 public interface InterfaceInteract
 {
-    public void Interact();
+    public string name { get; }
+    public void Interact(PlayerChar player);
 }

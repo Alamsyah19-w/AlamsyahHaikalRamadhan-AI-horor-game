@@ -21,13 +21,12 @@ public class InputManager : MonoBehaviour,IMovementActions
     {
         if (context.performed)
         {
-            Debug.Log("Interact action performed");
+            // Debug.Log("Interact action performed");
         }
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-            Debug.Log(context.ReadValue<Vector2>());
             OnMoveInputEvent?.Invoke(context.ReadValue<Vector2>());
     }
     public void OnSprint(InputAction.CallbackContext context)
@@ -35,13 +34,13 @@ public class InputManager : MonoBehaviour,IMovementActions
         if (context.performed)
         {
             onSprintInputEvent?.Invoke(true);
-            Debug.Log("Sprint action performed");
+            
             
         }
         else if (context.canceled)
         {
             onSprintInputEvent?.Invoke(false);
-            Debug.Log("Sprint action canceled");
+            
         }
     }
 }
