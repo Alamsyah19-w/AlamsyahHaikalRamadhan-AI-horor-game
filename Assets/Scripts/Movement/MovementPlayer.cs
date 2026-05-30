@@ -3,20 +3,24 @@ using UnityEngine;
 public class MovementPlayer : MonoBehaviour
 {
     [SerializeField] private CharacterController characterController;
-
+    [SerializeField] private float gravityScale = 1;
     [SerializeField] private float acceleration = 0.5f;
     [SerializeField] private float currentSpeed = 5f;
     private bool sprint;
     private float walkSpeed = 5f;
     private float sprintSpeed = 8f;
     private Vector3 movementDirection;
-    private Vector3 velocity;
+    private Vector3 velocityXZ;
 
+    private float velocityY;
+    private bool isGrounded;
     public bool Sprint => sprint;
     
     private void Update()
     {
         Accelerate();
+        CheckGrounded();
+        ResetVelocityY();
         Movement();
         
         
@@ -30,13 +34,17 @@ public class MovementPlayer : MonoBehaviour
         Direction.y = 0f;
         if (movementDirection.magnitude > 0.1f)
         {
-            velocity= Direction.normalized * currentSpeed * Time.deltaTime;
+            velocityXZ= Direction.normalized * currentSpeed * Time.deltaTime;
             
         }
         else
         {
-            velocity = Vector3.zero;
+            velocityXZ = Vector3.zero;
         }
+    }
+    private void CalculateVelocityY()
+    {
+        velocityY += Physics.gravity.y * gravityScale * Time.deltaTime;
     }
     private void Accelerate()
     {
@@ -57,6 +65,18 @@ public class MovementPlayer : MonoBehaviour
             currentSpeed = 0f;
         }
     }
+    private void CheckGrounded()
+    {
+        LayerMask groundLayer = LayerMask.GetMask("Ground");
+        isGrounded = Physics.CheckSphere(transform.position, 0.5f, groundLayer);
+    }
+    private void ResetVelocityY()
+    {
+        if (isGrounded && velocityY < 0)
+        {
+            velocityY = -2f;
+        }
+    }
 
     public void SetMovementDirection(Vector2 inputDirection)
     {
@@ -70,6 +90,8 @@ public class MovementPlayer : MonoBehaviour
     public void Movement()
     {
         CalculateVelocity();
+        CalculateVelocityY();
+        Vector3 velocity = new Vector3(velocityXZ.x, velocityY, velocityXZ.z);
         characterController.Move(velocity);
         
     }

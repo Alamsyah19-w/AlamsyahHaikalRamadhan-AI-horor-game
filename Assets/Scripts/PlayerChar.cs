@@ -11,4 +11,9 @@ public class PlayerChar : MonoBehaviour
     public StaminaPlayer Stamina => staminaPlayer;
     
     public InventoryManager Inventory => inventoryManager;
+    private void Awake()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 }
