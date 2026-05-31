@@ -15,7 +15,7 @@ public class Item : MonoBehaviour, InterfaceInteract, InterfacePickable
     }
     public void Interact(PlayerChar player)
     {
-       
+        PickUp(player);
     }
 
     

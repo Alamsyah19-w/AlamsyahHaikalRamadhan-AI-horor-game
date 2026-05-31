@@ -5,6 +5,7 @@ public class PlayerChar : MonoBehaviour
     [SerializeField] private MovementPlayer playerMovement;
     [SerializeField] private InventoryManager inventoryManager;
     [SerializeField] private StaminaPlayer staminaPlayer;
+    [SerializeField] private InteractDetector interactDetector;
 
     public MovementPlayer Movement => playerMovement;
     

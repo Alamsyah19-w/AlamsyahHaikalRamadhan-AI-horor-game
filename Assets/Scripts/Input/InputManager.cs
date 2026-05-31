@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour,IMovementActions
     private PlayerInputAction inputActions;
     public UnityEvent<Vector2> OnMoveInputEvent;
     public UnityEvent<bool> onSprintInputEvent;
+    public UnityEvent OnInteractInputEvent;
   
     private void Awake()
     {
@@ -16,15 +17,6 @@ public class InputManager : MonoBehaviour,IMovementActions
         inputActions.Movement.SetCallbacks(this);
         
     }
-
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            // Debug.Log("Interact action performed");
-        }
-    }
-
     public void OnMove(InputAction.CallbackContext context)
     {
             OnMoveInputEvent?.Invoke(context.ReadValue<Vector2>());
@@ -41,6 +33,15 @@ public class InputManager : MonoBehaviour,IMovementActions
         {
             onSprintInputEvent?.Invoke(false);
             
+        }
+    }
+
+    public void OnInteractObject(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnInteractInputEvent?.Invoke();
+            Debug.Log("Interact");
         }
     }
 }

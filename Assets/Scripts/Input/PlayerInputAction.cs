@@ -109,6 +109,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InteractObject"",
+                    ""type"": ""Button"",
+                    ""id"": ""d3321f84-de48-40b2-9201-c67599bc58c9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -177,6 +186,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c91e2816-012d-4c64-ae0e-cd8097a0b0cd"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -199,6 +219,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         m_Movement_Sprint = m_Movement.FindAction("Sprint", throwIfNotFound: true);
+        m_Movement_InteractObject = m_Movement.FindAction("InteractObject", throwIfNotFound: true);
     }
 
     ~@PlayerInputAction()
@@ -281,6 +302,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
     private readonly InputAction m_Movement_Move;
     private readonly InputAction m_Movement_Sprint;
+    private readonly InputAction m_Movement_InteractObject;
     /// <summary>
     /// Provides access to input actions defined in input action map "Movement".
     /// </summary>
@@ -300,6 +322,10 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Movement/Sprint".
         /// </summary>
         public InputAction @Sprint => m_Wrapper.m_Movement_Sprint;
+        /// <summary>
+        /// Provides access to the underlying input action "Movement/InteractObject".
+        /// </summary>
+        public InputAction @InteractObject => m_Wrapper.m_Movement_InteractObject;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -332,6 +358,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @InteractObject.started += instance.OnInteractObject;
+            @InteractObject.performed += instance.OnInteractObject;
+            @InteractObject.canceled += instance.OnInteractObject;
         }
 
         /// <summary>
@@ -349,6 +378,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @InteractObject.started -= instance.OnInteractObject;
+            @InteractObject.performed -= instance.OnInteractObject;
+            @InteractObject.canceled -= instance.OnInteractObject;
         }
 
         /// <summary>
@@ -416,5 +448,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSprint(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "InteractObject" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteractObject(InputAction.CallbackContext context);
     }
 }
