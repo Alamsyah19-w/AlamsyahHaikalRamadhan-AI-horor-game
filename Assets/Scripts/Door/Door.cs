@@ -17,13 +17,25 @@ public class Door : MonoBehaviour, InterfaceInteract
     [ContextMenu("Interact Door")]
     public void Interact(PlayerChar player)
     {
-        if (isOpen)
+        if (isLocked)
         {
-            CloseDoor();
+            bool hasKey = player.Inventory.checkItemInInventory(keyId);
+            if (hasKey)
+            {
+                isLocked = false;
+                OpenDoor();
+            }
         }
         else
         {
-            OpenDoor();
+            if (isOpen)
+            {
+                CloseDoor();
+            }
+            else
+            {
+                OpenDoor();
+            }
         }
 
     }
