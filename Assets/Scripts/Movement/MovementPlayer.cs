@@ -15,6 +15,12 @@ public class MovementPlayer : MonoBehaviour
     private float velocityY;
     private bool isGrounded;
     public bool Sprint => sprint;
+
+    public bool Enabled { get; private set; } = true;
+    public void SetEnabled(bool isEnabled)
+    {
+        Enabled = isEnabled;
+    }
     
     private void Update()
     {
@@ -89,13 +95,15 @@ public class MovementPlayer : MonoBehaviour
     }
     public void Movement()
     {
-        CalculateVelocity();
-        CalculateVelocityY();
-        Vector3 velocity = new Vector3(velocityXZ.x, velocityY, velocityXZ.z);
-        characterController.Move(velocity);
+        if (Enabled==true){
+            CalculateVelocity();
+            CalculateVelocityY();
+            
+            Vector3 velocity = new Vector3(velocityXZ.x, velocityY, velocityXZ.z);
+            
+            characterController.Move(velocity);
+        }
         
     }
-
-
 
 }

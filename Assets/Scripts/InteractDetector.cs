@@ -9,6 +9,12 @@ public class InteractDetector : MonoBehaviour
     [SerializeField] private LayerMask Interactable;
     private InterfaceInteract detectedInteractable;
     private bool isInteracting;
+
+    public bool Enabled { get; private set; } = true;
+    public void SetEnabled(bool isEnabled)
+    {
+        Enabled = isEnabled;
+    }
     private void Update()
     {
         UpdateDetection();
@@ -21,25 +27,27 @@ public class InteractDetector : MonoBehaviour
             isInteracting = false;
             return;
         }
-        Transform cameraTransform = Camera.main.transform;
-        bool isDetectedInteractable =Physics.BoxCast(cameraTransform.position,detectorBoxSize*0.5f,cameraTransform.forward,out RaycastHit hit,Quaternion.identity,detectorDistance,Interactable);
+        if(Enabled==true){
+            Transform cameraTransform = Camera.main.transform;
+            
+            bool isDetectedInteractable =Physics.BoxCast(cameraTransform.position,detectorBoxSize*0.5f,cameraTransform.forward,out RaycastHit hit,Quaternion.identity,detectorDistance,Interactable);
 
-        if (isDetectedInteractable)
-        {
-            InterfaceInteract interactable = hit.collider.gameObject.GetComponent<InterfaceInteract>();
-            //Debug.Log("Hit Object : " + hit.collider.gameObject.name);
-            if (interactable != null)
+            if (isDetectedInteractable)
             {
-                detectedInteractable = interactable;                
-            }
-            else
-            {
-                detectedInteractable = null;
-                Debug.LogWarning("Detected object does not implement InterfaceInteract.");
-            }
+                InterfaceInteract interactable = hit.collider.gameObject.GetComponent<InterfaceInteract>();
+                //Debug.Log("Hit Object : " + hit.collider.gameObject.name);
+                if (interactable != null)
+                {
+                    detectedInteractable = interactable;                
+                }
+                else
+                {
+                    detectedInteractable = null;
+                    Debug.LogWarning("Detected object does not implement InterfaceInteract.");
+                }
 
+            }
         }
-
     }
     public void Interact()
     {
