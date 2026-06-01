@@ -8,6 +8,7 @@ public class PlayerChar : MonoBehaviour
     [SerializeField] private InteractDetector interactDetector;
     [SerializeField] private CameraManager cameraManager;
     [SerializeField] private InputManager inputManager;
+    [SerializeField] private Flashlight flashlight;
 
     public MovementPlayer Movement => playerMovement;
     
@@ -18,6 +19,7 @@ public class PlayerChar : MonoBehaviour
     public CameraManager Camera => cameraManager;
     public InteractDetector InteractDetector => interactDetector;
     public InputManager Input => inputManager;
+    public Flashlight Flashlight => flashlight;
     public bool isHiding { get; private set; }
     public void SetHiding(bool hiding)
     {

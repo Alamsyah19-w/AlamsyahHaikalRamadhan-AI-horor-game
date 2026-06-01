@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 public class HidingCloset : MonoBehaviour, InterfaceInteract
 {
-    [SerializeField] private string name;
+    [SerializeField] private string _name;
     [SerializeField] private Transform hidingPosition;
     [SerializeField] private Transform unhidePosition;
     [SerializeField] private float hideDuration = 1f;
@@ -12,7 +12,7 @@ public class HidingCloset : MonoBehaviour, InterfaceInteract
     private Coroutine hideCoroutine;
     private Coroutine unhideCoroutine;
 
-    public string Name => name;
+    public string Name => _name;
 
     public IEnumerator HidePlayer()
     {

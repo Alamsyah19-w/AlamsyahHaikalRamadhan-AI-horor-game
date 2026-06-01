@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour,IMovementActions
     public UnityEvent<Vector2> OnMoveInputEvent;
     public UnityEvent<bool> onSprintInputEvent;
     public UnityEvent OnInteractInputEvent;
+    public UnityEvent OnFlashlightInput;
   
     private void Awake()
     {
@@ -42,6 +43,15 @@ public class InputManager : MonoBehaviour,IMovementActions
         {
             OnInteractInputEvent?.Invoke();
             Debug.Log("Interact");
+        }
+    }
+
+    public void OnFlashlight(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnFlashlightInput?.Invoke();
+            
         }
     }
 }

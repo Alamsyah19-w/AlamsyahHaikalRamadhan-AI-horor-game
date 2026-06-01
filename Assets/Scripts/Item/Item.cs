@@ -6,7 +6,7 @@ public class Item : MonoBehaviour, InterfaceInteract, InterfacePickable
     public string Name => data.name;
     public UnityEvent OnItemPickUp;
     [ContextMenu("Pick Up")]
-    public void PickUp(PlayerChar player)
+    public virtual void PickUp(PlayerChar player)
     {
         ItemData newData= new ItemData { ID = data.ID, name = data.name };
         player.Inventory.AddItem(newData);
