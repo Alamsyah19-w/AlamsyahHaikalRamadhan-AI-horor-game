@@ -20,10 +20,10 @@ public class PlayerChar : MonoBehaviour
     public InteractDetector InteractDetector => interactDetector;
     public InputManager Input => inputManager;
     public Flashlight Flashlight => flashlight;
-    public bool isHiding { get; private set; }
+    public bool IsHiding { get; private set; }
     public void SetHiding(bool hiding)
     {
-        isHiding = hiding;
+        IsHiding = hiding;
     }
     private void Awake()
     {

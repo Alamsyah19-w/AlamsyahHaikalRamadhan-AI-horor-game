@@ -10,12 +10,13 @@ public class SightPerception: MonoBehaviour
 
     [SerializeField] private LayerMask targetLayer;
 
-    public bool canSeePlayer{ get; private set;}
-    public Vector3 lastKnownPlayerPosition { get; private set; }
+    public bool CanSeePlayer{ get; private set;}
+    public Vector3 LastSeenPosition { get; private set; }
 
     private void Update()
     {
-        canSeePlayer = CheckSight();
+        CanSeePlayer = CheckSight();
+        Debug.Log("Can See Player: " + CanSeePlayer);
     }
 
     public bool CheckSight()
@@ -49,7 +50,7 @@ public class SightPerception: MonoBehaviour
         {
             if (hit.transform == targetTransform)
             {
-                lastKnownPlayerPosition = targetTransform.position;
+                LastSeenPosition = targetTransform.position;
                 return true;
             }
             

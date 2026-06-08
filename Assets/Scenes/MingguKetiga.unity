@@ -818,6 +818,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8295315630740989371, guid: 478f0db43191828409d95a55b1618a2b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1473923771}
+    - targetCorrespondingSourceObject: {fileID: 8295315630740989371, guid: 478f0db43191828409d95a55b1618a2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1473923773}
   m_SourcePrefab: {fileID: 100100000, guid: 478f0db43191828409d95a55b1618a2b, type: 3}
 --- !u!1001 &596569914
 PrefabInstance:
@@ -945,7 +948,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.78
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -953,7 +956,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2.36
+  m_Height: 2.22
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -972,6 +975,8 @@ MonoBehaviour:
   m_Graph: {fileID: 3362961085622282579, guid: 334f3d0f269d53c4bbdbb906ce2e0224, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 7391837646246904131
+  - rid: 7391837646246904154
+  - rid: 7391837646246904780
   m_OriginalGraph: {fileID: 3362961085622282579, guid: 334f3d0f269d53c4bbdbb906ce2e0224, type: 2}
   m_IsInitialised: 0
   m_IsStarted: 0
@@ -986,6 +991,22 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 681527420}
+    - rid: 7391837646246904154
+      type: {class: 'BlackboardVariable`1[[GhostAIController, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 10598655034097668451
+          m_Value1: 4239657941088624180
+        Name: AI Controller
+        m_Value: {fileID: 681527428}
+    - rid: 7391837646246904780
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 8732117185789858103
+          m_Value1: 7492262376118755573
+        Name: Target
+        m_Value: {fileID: 1473923769}
 --- !u!114 &681527425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1004,7 +1025,38 @@ MonoBehaviour:
   viewAngle: 90
   targetLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 384
+--- !u!114 &681527428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681527420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e10939ef47f0544a8d8ae5c5d2b1575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostAIController
+  sightPerception: {fileID: 681527425}
+  behaviorAgent: {fileID: 681527424}
+  navMeshAgent: {fileID: 681527423}
+  player: {fileID: 1473923766}
+  OnDespawn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1279442123}
+        m_TargetAssemblyTypeName: GhostSpawner, Assembly-CSharp
+        m_MethodName: RestartSpawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &770173447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,7 +1338,7 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 17
   m_Range: 30
   m_SpotAngle: 100
   m_InnerSpotAngle: 30
@@ -1468,6 +1520,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07971f1a7660e6646bebebcc76aa33ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementPlayer
+--- !u!1 &1279442122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1279442124}
+  - component: {fileID: 1279442123}
+  m_Layer: 0
+  m_Name: GhostSpawnner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1279442123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279442122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91283872edd6e794cb3e47223d16bef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostSpawner
+  aiController: {fileID: 681527428}
+  minSpawnDelay: 5
+  maxSpawnDelay: 8
+  minSpawnDistance: 3
+  maxSpawnDistance: 5
+--- !u!4 &1279442124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279442122}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1367843332 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8854412412298604499, guid: 83b35f09eb62f6b4aa05fc23b95649a1, type: 3}
@@ -1872,6 +1973,29 @@ MonoBehaviour:
   playerChar: {fileID: 1473923766}
   fullBattery: 100
   batteryDrainRate: 0.5
+--- !u!136 &1473923773
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473923761}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.45
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: -0.04, y: 0.07, z: 0}
 --- !u!1 &1498523364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2388,6 +2512,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3113713804075751281, guid: 6924745a509f7b746bc74f3d4548b1aa, type: 3}
       insertIndex: 1
+      addedObject: {fileID: 681527428}
+    - targetCorrespondingSourceObject: {fileID: 3113713804075751281, guid: 6924745a509f7b746bc74f3d4548b1aa, type: 3}
+      insertIndex: 2
       addedObject: {fileID: 681527425}
     - targetCorrespondingSourceObject: {fileID: 3113713804075751281, guid: 6924745a509f7b746bc74f3d4548b1aa, type: 3}
       insertIndex: -1
@@ -2420,3 +2547,4 @@ SceneRoots:
   - {fileID: 2052863282}
   - {fileID: 770173449}
   - {fileID: 115369018}
+  - {fileID: 1279442124}
