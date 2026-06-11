@@ -38,5 +38,13 @@ public class GhostAIController : MonoBehaviour
         gameObject.SetActive(false);
 
     }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerChar player = collision.gameObject.GetComponent<PlayerChar>();
+            player?.Death();
+        }
+    }
 
 }

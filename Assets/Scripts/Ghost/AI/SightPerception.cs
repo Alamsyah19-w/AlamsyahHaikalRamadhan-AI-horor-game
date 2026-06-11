@@ -16,7 +16,6 @@ public class SightPerception: MonoBehaviour
     private void Update()
     {
         CanSeePlayer = CheckSight();
-        Debug.Log("Can See Player: " + CanSeePlayer);
     }
 
     public bool CheckSight()
@@ -46,6 +45,7 @@ public class SightPerception: MonoBehaviour
         //raycast
 
         bool isSeeTarget= Physics.Raycast(eyeTransform.position, directionToPlayer.normalized, out RaycastHit hit, viewDistance, targetLayer);
+
         if (isSeeTarget)
         {
             if (hit.transform == targetTransform)

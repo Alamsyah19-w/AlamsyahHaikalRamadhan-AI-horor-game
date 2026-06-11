@@ -22,6 +22,9 @@ public partial class SetCanSeeTargetAction : Action
             return Status.Failure;
         }
         CanSeeTarget.Value = AI.Value.SightPerception.CanSeePlayer;
+        
+        
+        
         return Status.Success;
     }
 

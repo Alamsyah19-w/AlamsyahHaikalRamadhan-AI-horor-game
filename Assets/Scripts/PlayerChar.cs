@@ -25,6 +25,10 @@ public class PlayerChar : MonoBehaviour
     {
         IsHiding = hiding;
     }
+    public void Death()
+    {
+        Debug.Log("death");
+    }
     private void Awake()
     {
         Cursor.visible = false;
