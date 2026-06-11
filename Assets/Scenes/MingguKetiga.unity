@@ -1275,7 +1275,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.78
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.97, z: 0}
@@ -3065,6 +3065,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3113713804075751281, guid: 6924745a509f7b746bc74f3d4548b1aa, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547232091050858417, guid: 6924745a509f7b746bc74f3d4548b1aa, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 390053dae0e0b334786bcc8972ee37d3, type: 2}
+    - target: {fileID: 8547232091050858417, guid: 6924745a509f7b746bc74f3d4548b1aa, type: 3}
+      propertyPath: m_CullingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547232091050858417, guid: 6924745a509f7b746bc74f3d4548b1aa, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
