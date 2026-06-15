@@ -88,11 +88,16 @@ public class MovementPlayer : MonoBehaviour
     {
         movementDirection = new Vector3(inputDirection.x, 0, inputDirection.y);
     }
+
     public void SetSprint(bool isSprint)
     {
         sprint = isSprint;
-        Debug.Log("Sprint set to: " + sprint);
+        if (isSprint)
+        {
+            HUDManager.Instance.StaminaUI.SetVisible(true);
+        }
     }
+
     public void Movement()
     {
         if (Enabled==true){

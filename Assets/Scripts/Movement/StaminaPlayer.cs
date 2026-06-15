@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.AppUI.UI;
 using UnityEngine;
 
 public class StaminaPlayer : MonoBehaviour
@@ -7,9 +9,12 @@ public class StaminaPlayer : MonoBehaviour
     [SerializeField] private float staminaRecoveryRate = 20f;
     [SerializeField] private MovementPlayer movementPlayer;
     [SerializeField] private float currentStamina;
+    private Coroutine stopRegenStaminaCorotine;
+    private bool isWaitingRegenStamina;
     private void Awake()
     {
         currentStamina = maxStamina;
+        HUDManager.Instance.StaminaUI.SetStaminaFill(currentStamina,maxStamina);
     }
     private void Update()
     {
@@ -19,6 +24,14 @@ public class StaminaPlayer : MonoBehaviour
     {
         if (movementPlayer.Sprint)
         {
+            if (stopRegenStaminaCorotine != null)
+            {
+                StopCoroutine(stopRegenStaminaCorotine);
+                stopRegenStaminaCorotine = null;
+            }
+
+            isWaitingRegenStamina=false;
+
             if (currentStamina > 0f)
             {
                 currentStamina -= sprintStaminaCost * Time.deltaTime;
@@ -31,12 +44,29 @@ public class StaminaPlayer : MonoBehaviour
         }
         else
         {
-            currentStamina += staminaRecoveryRate * Time.deltaTime;
+            if (currentStamina< maxStamina)
+            {
+                currentStamina += staminaRecoveryRate * Time.deltaTime;
+            }
+            else if (isWaitingRegenStamina == false)
+            {
+                stopRegenStaminaCorotine =StartCoroutine(StopRegenStaminaWait());
+                isWaitingRegenStamina= true;
+            }
+           
         }
+        
         currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        HUDManager.Instance.StaminaUI.SetStaminaFill(currentStamina,maxStamina);
     }
     private void SprintStop()
     {
         movementPlayer.SetSprint(false);
+    }
+
+    private IEnumerator StopRegenStaminaWait()
+    {
+        yield return new WaitForSeconds(1);
+        HUDManager.Instance.StaminaUI.SetVisible(false);
     }
 }
