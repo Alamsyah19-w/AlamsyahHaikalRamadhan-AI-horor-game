@@ -35,17 +35,19 @@ public class InteractDetector : MonoBehaviour
             if (isDetectedInteractable)
             {
                 InterfaceInteract interactable = hit.collider.gameObject.GetComponent<InterfaceInteract>();
-                //Debug.Log("Hit Object : " + hit.collider.gameObject.name);
+                
                 if (interactable != null)
                 {
-                    detectedInteractable = interactable;                
+                    detectedInteractable = interactable; 
+                    HUDManager.Instance.InteractionInfo.SetNameText(detectedInteractable.name);
+                    HUDManager.Instance.InteractionInfo.SetVisible(true);
+                    HUDManager.Instance.CrosshairUI.SetHighlight(true);             
                 }
-                else
-                {
-                    detectedInteractable = null;
-                    Debug.LogWarning("Detected object does not implement InterfaceInteract.");
-                }
-
+            }
+            else
+            {
+                HUDManager.Instance.InteractionInfo.SetVisible(false);
+                HUDManager.Instance.CrosshairUI.SetHighlight(false);
             }
         }
     }
@@ -56,6 +58,8 @@ public class InteractDetector : MonoBehaviour
             detectedInteractable.Interact(playerChar);
             detectedInteractable = null;
             isInteracting = true;
+            HUDManager.Instance.InteractionInfo.SetVisible(false);
+            HUDManager.Instance.CrosshairUI.SetHighlight(false);
         }
     }
 

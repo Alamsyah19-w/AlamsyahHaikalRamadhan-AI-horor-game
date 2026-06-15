@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 public class RotatingDoor : Door
 {
+   
     [SerializeField] private float openAngle;
     [SerializeField] private float closeAngle;
     public override void OpenDoor()

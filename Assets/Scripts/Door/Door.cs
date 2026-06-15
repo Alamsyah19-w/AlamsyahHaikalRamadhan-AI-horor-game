@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public class Door : MonoBehaviour, InterfaceInteract
 {
+     [SerializeField] string Name;
     [SerializeField] protected Transform doorTransform;
     [SerializeField] protected float duration = 1f;
     [SerializeField] protected bool isLocked;
