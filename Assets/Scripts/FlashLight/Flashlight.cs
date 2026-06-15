@@ -11,12 +11,14 @@ public class Flashlight : MonoBehaviour
 
     private  bool hasFlashlight => playerChar.Inventory.checkItemInInventory("Flashlight_001");
 
-    public bool hasBattery => batteryLevel >0;
+    public bool HasBattery => batteryLevel >0;
 
     private void Awake()
     {
         flashlight.enabled = false;
         batteryLevel = fullBattery;
+
+        HUDManager.Instance.BattreyLvlUI.UpdateBattreyUI(batteryLevel,fullBattery);
 
     }
     private void Update()
@@ -29,7 +31,7 @@ public class Flashlight : MonoBehaviour
     {
         if (flashlight != null && flashlight.enabled== true)
         {
-            if (hasBattery == true)
+            if (HasBattery == true)
             {
                 batteryLevel -= batteryDrainRate * Time.deltaTime;
             }
@@ -38,6 +40,7 @@ public class Flashlight : MonoBehaviour
                 batteryLevel = 0;
                 flashlight.enabled = false;
             }
+            HUDManager.Instance.BattreyLvlUI.UpdateBattreyUI(batteryLevel,fullBattery);
         }
     }
 
@@ -51,12 +54,13 @@ public class Flashlight : MonoBehaviour
     public void RechargeBattery()
     {
         batteryLevel = fullBattery;
+        HUDManager.Instance.BattreyLvlUI.UpdateBattreyUI(batteryLevel,fullBattery);
     }
     public void UserFlashlight()
     {
         if (hasFlashlight == true && flashlight != null)
         {
-            if (hasBattery)
+            if (HasBattery)
             {
                 flashlight.enabled = !flashlight.enabled;
             }
@@ -65,5 +69,11 @@ public class Flashlight : MonoBehaviour
                 flashlight.enabled = false;
             }
         }
+    }
+    public void SetBattreyLevel(float bt)
+    {
+        batteryLevel=batteryLevel+bt;
+        batteryLevel=Mathf.Clamp(batteryLevel,0,bt);
+        HUDManager.Instance.BattreyLvlUI.UpdateBattreyUI(batteryLevel,fullBattery);
     }
 }
