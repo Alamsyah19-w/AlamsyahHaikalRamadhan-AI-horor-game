@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27301418207f17541a55bebe68ba4089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HidingCloset
-  _name: 
+  _name: Wardrobe
   hidingPosition: {fileID: 1575941560}
   unhidePosition: {fileID: 1498523365}
   hideDuration: 1
@@ -577,8 +577,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea44c13c1f92e144855e62cb7a9cf2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlideDoor
-  Name: 
   doorTransform: {fileID: 253742782}
+  nameInteract: Wardrobe Door
   duration: 1
   isLocked: 0
   isOpen: 1
@@ -634,8 +634,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea44c13c1f92e144855e62cb7a9cf2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlideDoor
-  Name: 
   doorTransform: {fileID: 337370460}
+  nameInteract: down drawer
   duration: 1
   isLocked: 0
   isOpen: 0
@@ -828,8 +828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1bd6d0ce630b654cacde3e9f7dc30fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotatingDoor
-  Name: Door white
   doorTransform: {fileID: 442997123}
+  nameInteract: white door
   duration: 1
   isLocked: 1
   isOpen: 0
@@ -1744,8 +1744,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1bd6d0ce630b654cacde3e9f7dc30fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotatingDoor
-  Name: ExitDoor
   doorTransform: {fileID: 668989158}
+  nameInteract: Door Exit
   duration: 1
   isLocked: 0
   isOpen: 0
@@ -2584,8 +2584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea44c13c1f92e144855e62cb7a9cf2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlideDoor
-  Name: 
   doorTransform: {fileID: 1152352554}
+  nameInteract: up drawer
   duration: 1
   isLocked: 0
   isOpen: 0

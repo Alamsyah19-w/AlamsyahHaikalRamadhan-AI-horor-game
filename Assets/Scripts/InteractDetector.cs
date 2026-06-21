@@ -39,7 +39,7 @@ public class InteractDetector : MonoBehaviour
                 if (interactable != null)
                 {
                     detectedInteractable = interactable; 
-                    HUDManager.Instance.InteractionInfo.SetNameText(detectedInteractable.name);
+                    HUDManager.Instance.InteractionInfo.SetNameText(detectedInteractable.Name);
                     HUDManager.Instance.InteractionInfo.SetVisible(true);
                     HUDManager.Instance.CrosshairUI.SetHighlight(true);             
                 }

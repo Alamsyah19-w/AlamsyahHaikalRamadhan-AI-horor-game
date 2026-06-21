@@ -42,7 +42,7 @@ public class InputManager : MonoBehaviour,IMovementActions
         if (context.performed)
         {
             OnInteractInputEvent?.Invoke();
-            Debug.Log("Interact");
+            
         }
     }
 

@@ -2,15 +2,17 @@ using UnityEngine;
 using UnityEngine.Events;
 public class Door : MonoBehaviour, InterfaceInteract
 {
-     [SerializeField] string Name;
     [SerializeField] protected Transform doorTransform;
+    [SerializeField] protected string nameInteract;
     [SerializeField] protected float duration = 1f;
     [SerializeField] protected bool isLocked;
     [SerializeField] protected bool isOpen;
     [SerializeField] protected string keyId;
+
     protected Coroutine AnimatingDoorCoroutine;
     protected bool isAnimating;
     public bool IsAnimating => isAnimating;
+    public string Name=>nameInteract;
 
     public UnityEvent OnOpenDoor;
     public UnityEvent OnCloseDoor;
