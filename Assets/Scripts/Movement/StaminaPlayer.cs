@@ -9,11 +9,16 @@ public class StaminaPlayer : MonoBehaviour
     [SerializeField] private float staminaRecoveryRate = 20f;
     [SerializeField] private MovementPlayer movementPlayer;
     [SerializeField] private float currentStamina;
+    [SerializeField] private AudioSource breathingAudio;
     private Coroutine stopRegenStaminaCorotine;
     private bool isWaitingRegenStamina;
     private void Awake()
     {
         currentStamina = maxStamina;
+        
+    }
+    private void Start()
+    {
         HUDManager.Instance.StaminaUI.SetStaminaFill(currentStamina,maxStamina);
     }
     private void Update()
@@ -58,6 +63,9 @@ public class StaminaPlayer : MonoBehaviour
         
         currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
         HUDManager.Instance.StaminaUI.SetStaminaFill(currentStamina,maxStamina);
+
+        breathingAudio.volume=1 -(currentStamina/maxStamina);
+
     }
     private void SprintStop()
     {

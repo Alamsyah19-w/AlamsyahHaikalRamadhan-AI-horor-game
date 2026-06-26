@@ -7,7 +7,7 @@ public class MovementPlayer : MonoBehaviour
     [SerializeField] private float acceleration = 0.5f;
     [SerializeField] private float currentSpeed = 5f;
     private bool sprint;
-    private float walkSpeed = 5f;
+    [SerializeField]private float walkSpeed = 5f;
     private float sprintSpeed = 8f;
     private Vector3 movementDirection;
     private Vector3 velocityXZ;
