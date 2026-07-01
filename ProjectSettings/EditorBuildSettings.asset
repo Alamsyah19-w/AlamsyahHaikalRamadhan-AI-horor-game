@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MingguKelima/MainMenu.unity
     guid: 2b6d1bb4fceec8a4d8aac22455820484
   - enabled: 1
-    path: Assets/Scenes/MingguKelima/HauntedHouse-Testing.unity
-    guid: 8ae2e60febf89994ea04e423d2f23a32
+    path: Assets/Scenes/MingguKelima/HauntedHouse.unity
+    guid: f5ca1aad1a5afcd43be3ad468ddf7aa7
   - enabled: 1
     path: Assets/Scenes/MingguKelima/LoseScreen.unity
     guid: e5211f97062f3704ba9359d04ec93973
