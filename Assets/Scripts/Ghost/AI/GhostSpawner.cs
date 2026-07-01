@@ -22,7 +22,7 @@ public class GhostSpawner : MonoBehaviour
         float spawnDelay = Random.Range(minSpawnDelay, maxSpawnDelay);
         yield return new WaitForSeconds(spawnDelay);
 
-        if (aiController.Player == null && aiController.Player.IsHiding)
+        if (aiController.Player == null || aiController.Player.IsHiding)
         {
             RestartSpawn();
             yield break;
@@ -35,7 +35,8 @@ public class GhostSpawner : MonoBehaviour
     {
         float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
         Vector3 spawnPosition = aiController.Player.transform.position - aiController.Player.transform.forward*spawnDistance;
-        spawnPosition.y = aiController.transform.position.y;
+
+        spawnPosition.y = aiController.Player.transform.position.y;
 
         aiController.NavMeshAgent.enabled = true;
         aiController.NavMeshAgent.Warp(spawnPosition);

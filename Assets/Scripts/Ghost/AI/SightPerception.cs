@@ -9,6 +9,7 @@ public class SightPerception: MonoBehaviour
     [SerializeField] private float viewAngle = 90f;
 
     [SerializeField] private LayerMask targetLayer;
+    [SerializeField] private PlayerChar playerChar;
 
     public bool CanSeePlayer{ get; private set;}
     public Vector3 LastSeenPosition { get; private set; }
@@ -48,7 +49,7 @@ public class SightPerception: MonoBehaviour
 
         if (isSeeTarget)
         {
-            if (hit.transform == targetTransform)
+            if (hit.transform == targetTransform && playerChar != null && !playerChar.IsHiding)
             {
                 LastSeenPosition = targetTransform.position;
                 return true;

@@ -41,6 +41,7 @@ public class Flashlight : MonoBehaviour
                 flashlight.enabled = false;
             }
             HUDManager.Instance.BattreyLvlUI.UpdateBattreyUI(batteryLevel,fullBattery);
+            
         }
     }
 
@@ -55,6 +56,7 @@ public class Flashlight : MonoBehaviour
     {
         batteryLevel = fullBattery;
         HUDManager.Instance.BattreyLvlUI.UpdateBattreyUI(batteryLevel,fullBattery);
+        
     }
     public void UserFlashlight()
     {

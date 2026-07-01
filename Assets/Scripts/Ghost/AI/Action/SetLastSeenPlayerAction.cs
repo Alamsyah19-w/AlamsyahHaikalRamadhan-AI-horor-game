@@ -22,6 +22,7 @@ public partial class SetLastSeenPlayerAction : Action
         {
             return Status.Failure;
         }
+        LastSeenPlayer.Value = AI.Value.SightPerception.LastSeenPosition;
         return Status.Success;
     }
 

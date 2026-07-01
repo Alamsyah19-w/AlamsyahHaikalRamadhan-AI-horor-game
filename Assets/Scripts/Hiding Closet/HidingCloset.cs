@@ -38,6 +38,7 @@ public class HidingCloset : MonoBehaviour, InterfaceInteract
         }
         hidingPlayer.transform.position = hidingPosition.position;
         hidingPlayer.transform.rotation = hidingPosition.rotation;
+        hidingPlayer.SetHiding(true);
 
         door.CloseDoor();
         yield return new WaitWhile(() => door.IsAnimating);
@@ -68,6 +69,7 @@ public class HidingCloset : MonoBehaviour, InterfaceInteract
 
         hidingPlayer.transform.position = unhidePosition.position;
         hidingPlayer.transform.rotation = unhidePosition.rotation;
+        
         door.CloseDoor();
 
         hidingPlayer.Camera.SetCameraInput(true);
